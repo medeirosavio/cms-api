@@ -32,7 +32,25 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validação dos dados da requisição
+        $validatedData = $request->validate([
+            'title' => 'required|string',
+            'author' => 'required|string',
+            'content' => 'required|string',
+            'tags' => 'required|array',
+            'tags.*' => 'string',
+        ]);
+
+        // Criação da nova postagem
+        $post = Post::create([
+            'title' => $validatedData['title'],
+            'author' => $validatedData['author'],
+            'content' => $validatedData['content'],
+            'tags' => $validatedData['tags'],
+        ]);
+
+        // Retornar resposta de sucesso com status 201 Created
+        return response()->json($post, 201);
     }
 
     /**
