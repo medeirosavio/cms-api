@@ -64,9 +64,24 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        // Validar os dados recebidos na requisição
+        $validatedData = $request->validate([
+            'title' => 'sometimes|string|max:255',
+            'author' => 'sometimes|string|max:255',
+            'content' => 'sometimes|string',
+            'tags' => 'sometimes|array'
+        ]);
+
+        // Buscar o post pelo ID
+        $post = Post::findOrFail($id);
+
+        // Atualizar os campos que foram recebidos na requisição
+        $post->update($validatedData);
+
+        // Retornar o post atualizado
+        return response()->json($post, 200);
     }
 
     /**
