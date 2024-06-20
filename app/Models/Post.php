@@ -10,7 +10,9 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = ['title', 'author', 'content', 'tags'];
+
     protected $casts = [
-        'tags' => 'json' // Define a coluna 'tags' como JSON
+        'tags' => 'json', // Define a coluna 'tags' como JSON
     ];
 }
+

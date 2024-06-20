@@ -11,13 +11,22 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::all();
+        // Verifica se há um parâmetro 'tag' na query da requisição
+        if ($request->has('tag')) {
+            $tag = $request->tag;
 
+            // Filtra os posts que contêm a tag especificada
+            $posts = Post::whereJsonContains('tags', $tag)->get();
+
+            return response()->json($posts);
+        }
+
+        // Caso não haja o parâmetro 'tag', retorna todos os posts
+        $posts = Post::all();
         return response()->json($posts);
     }
-
     /**
      * Store a newly created resource in storage.
      */
