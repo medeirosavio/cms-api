@@ -1,66 +1,152 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+CMS-API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Descrição
 
-## About Laravel
+A API-CMS é uma aplicação baseada em Laravel que fornece endpoints para criar, atualizar, listar e deletar postagens. Esta API também permite filtrar postagens por tags específicas. A documentação da API é gerada utilizando Swagger.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Funcionalidades
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+1. Listar todas as postagens.
+2. Filtrar postagens por tags.
+3. Criar uma nova postagem.
+4. Atualizar uma postagem existente.
+5. Deletar uma postagem por ID.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Requisitos
 
-## Learning Laravel
+- PHP >= 7.4
+- Composer
+- Laravel 8.x
+- MySQL ou outro banco de dados suportado pelo Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+ Instalação
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Instale as dependências do PHP:
+composer install
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+   1. Clone o repositório para o seu ambiente local:
+      git clone https://github.com/medeirosavio/cms-api.git
+      cd API-CMS
 
-## Laravel Sponsors
+ Configure o arquivo .env:
+ cp .env.example .env
+ Configure o arquivo .env com suas credenciais de banco de    dados e outras configurações necessárias.
+Gere a chave da aplicação:
+php artisan key:generate
+Execute as migrações para criar as tabelas no banco de dados:
+php artisan migrate
+Execute as seeder para popular o banco de dados (opcional):
+php artisan db:seed
+Inicie o servidor de desenvolvimento:
+php artisan serve
+Documentação da API
+A documentação da API é gerada utilizando Swagger e pode ser acessada em:
+http://127.0.0.1:8000/api/documentation
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Endpoints
+Listar todas as postagens
+URL: /posts
+Método: GET
+Resposta: 200 OK
+json
+Copy code
+[
+    {
+        "id": 1,
+        "title": "Notion",
+        "author": "Marcia Thiel",
+        "content": "Sed soluta nemo et consectetur reprehenderit ea reprehenderit sit...",
+        "tags": ["organization", "planning", "collaboration", "writing", "calendar"]
+    },
+    {
+        "id": 2,
+        "title": "json-server",
+        "author": "Eldora Schinner",
+        "content": "Laudantium illum modi tenetur possimus natus...",
+        "tags": ["api", "json", "schema", "node", "github", "rest"]
+    }
+]
 
-### Premium Partners
+Filtrar postagens por tag
+URL: /posts?tag={tag}
+Método: GET
+Resposta: 200 OK
+json
+Copy code
+[
+    {
+        "id": 2,
+        "title": "json-server",
+        "author": "Eldora Schinner",
+        "content": "Laudantium illum modi tenetur possimus natus...",
+        "tags": ["api", "json", "schema", "node", "github", "rest"]
+    }
+]
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Criar uma nova postagem
+URL: /posts
+Método: POST
+Corpo da Requisição:
+json
+Copy code
+{
+    "title": "hotel",
+    "author": "Jett Hilpert",
+    "content": "Local app manager...",
+    "tags": ["node", "organizing", "webapps", "domain", "developer", "https", "proxy"]
+}
 
-## Contributing
+Resposta: 201 Created
+json
+Copy code
+{
+    "id": 5,
+    "title": "hotel",
+    "author": "Jett Hilpert",
+    "content": "Local app manager...",
+    "tags": ["node", "organizing", "webapps", "domain", "developer", "https", "proxy"]
+}
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Atualizar uma postagem
+URL: /posts/{id}
+Método: PUT
+Corpo da Requisição:
+json
+Copy code
+{
+    "title": "hotel",
+    "author": "Taylor Haag",
+    "content": "Local app manager...",
+    "tags": ["organizing", "webapps", "domain", "developer", "proxy"]
+}
 
-## Code of Conduct
+Resposta: 200 OK
+json
+Copy code
+{
+    "id": 5,
+    "title": "hotel",
+    "author": "Taylor Haag",
+    "content": "Local app manager...",
+    "tags": ["organizing", "webapps", "domain", "developer", "proxy"]
+}
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Deletar uma postagem
+URL: /posts/{id}
+Método: DELETE
+Resposta: 204 No Content
+Testes
+Para rodar os testes da aplicação, utilize o comando:
+php artisan test
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Contribuição
+Faça um fork do projeto.
+Crie uma branch para sua feature (git checkout -b feature/fooBar).
+Faça commit das suas alterações (git commit -am 'Add some fooBar').
+Faça push para a branch (git push origin feature/fooBar).
+Crie um novo Pull Request.
+Licença
+Este projeto está licenciado sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
+Contato
+Sávio Medeiros - @medeirosavio - savio.medeiros@ccc.ufcg.edu.br
+Link do Projeto: https://github.com/medeirosavio/cms-api
