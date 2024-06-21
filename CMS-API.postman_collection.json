@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "ead3f7dc-8829-4167-b423-3d59b5f6988a",
+		"name": "CMS-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16545014"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8000/posts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/posts?tag=node",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/posts?tag=nodeposts?tag=node",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"posts"
+					],
+					"query": [
+						{
+							"key": "tag",
+							"value": "nodeposts?tag=node"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/posts",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"hotel\",\r\n    \"author\": \"Jett Hilpert\",\r\n    \"content\": \"Local app manager. Start apps within your browser, developer tool with local .localhost domain and https out of the box.\",\r\n    \"tags\": [\r\n        \"node\",\r\n        \"organizing\",\r\n        \"webapps\",\r\n        \"domain\",\r\n        \"developer\",\r\n        \"https\",\r\n        \"proxy\"\r\n    ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"posts"
+					]
+				},
+				"description": "Inserindo um cadastro"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/posts/5",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"hotel\",\r\n    \"author\": \"Taylor Haag\",\r\n    \"content\": \"Local app manager. Start apps within your browser, developer tool with local .localhost domain and https out of the box.\",\r\n    \"tags\": [\"organizing\", \"webapps\", \"domain\", \"developer\", \"proxy\"]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/posts/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"posts",
+						"5"
+					]
+				},
+				"description": "Edição de cadastro\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/posts/1",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/posts/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"posts",
+						"1"
+					]
+				},
+				"description": "Excluindo dados\r\n"
+			},
+			"response": []
+		}
+	]
+}
